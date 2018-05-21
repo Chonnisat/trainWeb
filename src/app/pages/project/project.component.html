@@ -1,0 +1,52 @@
+<div class="container">
+  <form (ngSubmit)="onSaveClick()" materialize ngNativeValidate>
+    <div class="row">
+      <div class="col s12 m8 offset-m2">
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="projCode" name="projCode" [(ngModel)]="project.projCode"  type="text" class="validate" required>
+            <label for="projCode">Project Code</label>
+          </div>
+
+          <div class="input-field col s12">
+            <input id="projName" name="projName" [(ngModel)]="project.projName"  type="text" class="validate" required>
+            <label for="projName">Project Name</label>
+          </div>
+
+          <div class="col s12 m10 file-field input-field">
+            <div class="btn blue darken-3">
+              <span>File</span>
+              <input type="file" (change)="fileChangeEvent($event);">
+            </div>
+            <div class="file-path-wrapper">
+              <input class="file-path validate" type="text" name="projImage" [(ngModel)]="project.projImage" required>
+            </div>
+          </div>
+
+          <div class="col s12 m10">
+            <span><label>Status</label></span>
+            <p>
+              <input [(ngModel)]="project.status" class="with-gap" name="status" type="radio" id="status-active" value="Y" />
+              <label for="status-active">Active</label>
+            </p>
+            <p>
+              <input [(ngModel)]="project.status" class="with-gap" name="status" type="radio" id="status-inactive" value="N" />
+              <label for="status-inactive">Inactive</label>
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s6">
+        <a class="btn col s12 m6 l2  blue darken-3 right" (click)="onBack()">Back</a>
+      </div>
+      <div class="col s6">
+        <button type="submit" class="btn col s12 m6 l2  blue darken-3 left" >Save</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<!-- {{ project | json}} -->

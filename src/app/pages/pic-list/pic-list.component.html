@@ -1,0 +1,35 @@
+<table class="centered striped">
+  <thead>
+    <tr>
+      <th>Edit</th>
+      <th>Pic Code</th>
+      <th>Pic Name</th>
+      <th>Pic Value</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let p of picList;">
+      <td>
+        <a class="btn-floating btn-large waves-effect waves-light yellow" (click)="onEditbtnClick(p.pkCode);">
+          <i class="material-icons">edit</i>
+        </a>
+      </td>
+      <td>{{p.picId}}</td>
+      <td>{{p.picName}}</td>
+      <td>{{p.picCode}}</td>
+      <td>
+        <a class="btn-floating btn-large waves-effect waves-light red" (click)="onDelbtnClick(p.pkCode);">
+          <i class="material-icons">delete</i>
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="fixed-action-btn horizontal">
+  <a class="btn-floating btn-large lime accent-4" (click)="onAddbtnClick();">
+    <i class="large material-icons">add</i>
+  </a>
+</div>

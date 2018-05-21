@@ -1,0 +1,35 @@
+<div class="container">
+  <form (ngSubmit)="onSave()" materialize ngNativeValidate>
+    <div class="row">
+      <div class="col s12 m8 offset-m2">
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="picId" name="picId" [(ngModel)]="pic.picId"  type="text" class="validate" required>
+            <label for="picId">Pic Code</label>
+          </div>
+
+          <div class="input-field col s12">
+            <input id="picName" name="picName" [(ngModel)]="pic.picName"  type="text" class="validate" required>
+            <label for="picName">Pic Name</label>
+          </div>
+
+          <div class="input-field col s12">
+            <input id="picCode" name="picCode" [(ngModel)]="pic.picCode"  type="text" class="validate" required>
+            <label for="picCode">Pic Value</label>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s6">
+        <a class="btn col s12 m6 l2  blue darken-3 right" (click)="onBack()">Back</a>
+      </div>
+      <div class="col s6">
+        <button type="submit" class="btn col s12 m6 l2  blue darken-3 left" >Save</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<!-- {{ project | json}} -->

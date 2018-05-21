@@ -1,0 +1,20 @@
+CREATE TABLE sc_issue (
+  issue_id int(18) NOT NULL AUTO_INCREMENT,
+  issue_project varchar(20) DEFAULT NULL,
+  issue_date datetime DEFAULT NULL,
+  issue_by varchar(50) DEFAULT NULL,
+  issue_type varchar(2) DEFAULT NULL,
+  issue_module varchar(50) DEFAULT NULL,
+  issue_desc varchar(500) DEFAULT NULL,
+  issue_priority varchar(2) DEFAULT NULL,
+  issue_status varchar(1) DEFAULT NULL,
+  issue_solution varchar(500) DEFAULT NULL,
+  issue_pic varchar(50) DEFAULT NULL,
+  issue_target datetime DEFAULT NULL,
+  issue_closed datetime DEFAULT NULL,
+  issue_cre varchar(20) DEFAULT NULL,
+  issue_cre_dat datetime DEFAULT NULL,
+  issue_upd varchar(20) DEFAULT NULL,
+  issue_upd_dat datetime DEFAULT NULL,
+  PRIMARY KEY (issue_id)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;

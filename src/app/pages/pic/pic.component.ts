@@ -4,6 +4,7 @@ import { PicService } from '../../shared/pic/pic.service';
 import { UploadService } from '../../shared/upload/upload.service';
 import { Pic } from '../../shared/pic/pic';
 import { environment } from '../../../environments/environment';
+import * as io from 'socket.io-client';
 
 @Component({
   selector: 'app-pic',
@@ -21,9 +22,12 @@ export class PicComponent implements OnInit {
   ) { }
 
   pic: Pic;
+  socket;
+
 
   ngOnInit() {
     this.pic = new Pic();
+    this.socket = io.connect(environment.remoteAPI);
     this.activatedRoute.params.subscribe(params => {
       if (params['pkCode']) {
         const pkCode = params['pkCode'];
@@ -50,6 +54,7 @@ export class PicComponent implements OnInit {
     }else {
       this.picService.addItem(this.pic).subscribe(
         pic => {
+          this.socket.emit('newPic');
           Materialize.toast('Add Item Complete', 3000);
           this.router.navigate(['admin', 'pic-list']);
         },

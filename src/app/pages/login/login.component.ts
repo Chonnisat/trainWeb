@@ -4,21 +4,27 @@ import { Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
 import { UserService } from '../../shared/user/user.service';
 import { User } from '../../shared/user/user';
+import { PicService } from '../../shared/pic/pic.service';
+import * as io from 'socket.io-client';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  providers: [PicService]
 })
 export class LoginComponent implements OnInit {
 
   isLogedIn = false;
   user: User;
+  totalPic;
+  socket;
 
   constructor(
     @Inject(PLATFORM_ID) private _platformId: Object,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private picService: PicService
   ) {
     this.user = new User();
     if (isPlatformBrowser(this._platformId)) {
@@ -33,7 +39,11 @@ export class LoginComponent implements OnInit {
   };
 
   ngOnInit() {
-
+    this.countTotalPic();
+    this.socket = io.connect(environment.remoteAPI);
+    this.socket.on('updatePic', (val) => {
+      this.totalPic = this.totalPic + val ;
+    });
   }
 
   doLogin() {
@@ -79,5 +89,17 @@ export class LoginComponent implements OnInit {
       userName = localStorage.getItem('userName');
     }
     return userName;
+  }
+
+  countTotalPic() {
+    this.picService.countTotalPic().subscribe(
+      data => {
+        if (data.length > 0) {
+          this.totalPic = data[0].totalPic;
+        }
+      }, error => {
+        console.log(error);
+      }
+    );
   }
 }

@@ -58,4 +58,12 @@ export class PicService {
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
+  countTotalPic() {
+    return this.http.get(`${environment.remoteAPI}/api/v1/pic/countTotalPic`, this.options)
+      .map((res: Response) => {
+        return res.json();
+      }) // ...and calling .json() on the response to return data
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+  }
+
 }

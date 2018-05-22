@@ -172,4 +172,30 @@ export class IssueListComponent implements OnInit {
 
     this.onLoadData();
   }
+
+  onExportExcelbtnClick() {
+    const searchBody = {
+      issueProject : this.criteria.issueProject,
+      issueStatus : this.criteria.issueStatus,
+      issuePic : this.criteria.issuePic,
+      issueDesc : this.criteria.issueDesc,
+      issueClosed : this.criteria.issueClosed,
+      issueId : this.criteria.issueId,
+      issueModule : this.criteria.issueModule,
+      issuePriority : this.criteria.issuePriority,
+      currentPage: this.currentPage,
+      rowPerPage: this.rowPerPage,
+      offset: this.offset,
+      issueDateStart: (this.criteria.issueDateStart) ? this.criteria.issueDateStart : '01/01/2000',
+      issueDateEnd: (this.criteria.issueDateEnd) ? this.criteria.issueDateEnd : '31/12/3000'
+    };
+
+    this.issueService.exportExcel(searchBody).subscribe(
+      data => {
+        console.log(data);
+      }, error => {
+        console.log(error);
+      }
+    );
+  }
 }

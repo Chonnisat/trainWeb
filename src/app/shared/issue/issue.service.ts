@@ -74,4 +74,12 @@ export class IssueService {
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
+  exportExcel(body): Observable<any> {
+    return this.http.post(`${environment.remoteAPI}/api/v1/issue/excel`, body, this.options)
+      .map((res: Response) => {
+        return res.json();
+      }) // ...and calling .json() on the response to return data
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+  }
+
 }

@@ -7,10 +7,10 @@ select
 from sc_entry_item
 where param_code = 'ISSUE'
   and entry_code = 'PIC';
-  
+
 
 -- readById-pic
-select 
+select
     concat(param_code,'-',entry_code,'-',item_code) as "pkCode"
     , item_code as "picId"
     , item_value as "picCode"
@@ -55,3 +55,10 @@ where concat(param_code,'-',entry_code,'-',item_code) = '${dat.pkCode}';
 -- delete-pic
 delete from sc_entry_item
 where concat(param_code,'-',entry_code,'-',item_code) = '${req.params.pkCode}';
+
+
+-- countTotalPic
+select count(1) as "totalPic"
+from sc_entry_item
+where param_code = 'ISSUE'
+    and entry_code = 'PIC';
